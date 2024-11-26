@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uses</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2e3b4e; /* Dark theme background */
+            background-image: linear-gradient(315deg, #2e3b4e 0%, #1f2833 100%); /* Dark gradient */
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            color: #e94e77; /* Colorful heading */
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Add an animation for fading in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            grid-template-rows: auto auto; /* Two rows */
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            background-color: #1c242f;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 50vh; /* Set the size to 50% of viewport height */
+            object-fit: cover; /* Ensures the content fills the space without distortion */
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Style for the video (only the second row item) */
+        .gallery-item video {
+            grid-column: span 2; /* Makes video span the entire width of the second row */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-item img:hover,
+        .gallery-item video:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .wrapper {
+                padding: 10px;
+            }
+
+            .content {
+                grid-template-columns: 1fr; /* One column for mobile view */
+                grid-template-rows: repeat(3, auto); /* Three rows for mobile view */
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="track.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="uses.html">Uses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="usage-history.html">Usage History</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="wrapper">
+        <h1>Gallery</h1>
+        <div class="content">
+            <div class="gallery-item">
+                <img src="1.jpg" alt="Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="2.jpg" alt="Image 2">
+            </div>
+            <div class="gallery-item">
+                <video controls>
+                    <source src="3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Tracking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            background-image: linear-gradient(315deg, #121212 0%, #2e2e2e 74%);
+            margin: 0;
+            padding: 0;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #44b09e;
+            transform: scale(1.1);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        .tracking-box {
+            width: 400px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #444;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4081; /* Pink */
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            animation: slideUp 0.7s ease-in-out;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-info span {
+            margin-right: 10px;
+            color: #ff4081;
+            font-size: 1.1rem;
+        }
+
+        .logout-button {
+            background: none;
+            border: none;
+            padding: 0;
+            color: rgb(255, 255, 255);
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            color: #44b09e;
+        }
+
+        .direction-button {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: #333333;
+            color: white;
+            border: none;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .direction-button:hover {
+            background-color: #45a049;
+        }
+
+        .direction-icon {
+            margin-right: 10px;
+            font-size: 30px;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .tracking-box {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .sensor-data {
+            margin-top: 20px;
+            padding: 15px;
+            border-top: 1px solid #444;
+            text-align: center;
+        }
+
+        .sensor-data h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ff4081;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        function updateSensorData() {
+            const username = sessionStorage.getItem('username');
+            fetch(`/api/sensor/${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('sensor-value').textContent = data.data || '0';
+                })
+                .catch(error => console.error('Error fetching sensor data:', error));
+        }
+
+        updateSensorData();
+        setInterval(updateSensorData, 1000);
+    </script>
+
+<nav>
+    <ul>
+        <li><a href="track.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="uses.html">Uses</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="usage-history.html">Usage History</a></li>
+    </ul>
+</nav>
+
+
+    <h1>Gesture Controlled Movable Bot</h1>
+
+    <div class="container">
+        <div class="tracking-box">
+            <h1>Live Tracking</h1>
+            <button class="direction-button">
+                <span class="direction-icon">&#8593;</span> Forward
+            </button>
+            <button class="direction-button">
+                <span class="direction-icon">&#8595;</span> Backward
+            </button>
+            <button class="direction-button">
+                <span class="direction-icon">&#8594;</span> Right
+            </button>
+            <button class="direction-button">
+                <span class="direction-icon">&#8592;</span> Left
+            </button>
+
+            <div class="sensor-data">
+                <h2>IR Sensor Data</h2>
+                <p>Distance: <span id="sensor-value">0</span> cm</p>
+            </div>
+        </div>
+
+        <div class="user-info top-right">
+            <span id="username"></span>
+            <button class="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const username = sessionStorage.getItem('username');
+            if (username) {
+                document.getElementById('username').textContent = username;
+            } else {
+                window.location.href = 'index.html';
+            }
+
+            document.querySelector('.logout-button').addEventListener('click', function() {
+                sessionStorage.removeItem('username');
+                window.location.href = 'index.html';
+            });
+        }
+    </script>
+</body>
+</html>

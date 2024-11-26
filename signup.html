@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            background-image: radial-gradient(circle at 50% 50%, #21262d, #0d1117);
+            color: #e6edf3;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(33, 38, 45, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(58, 134, 255, 0.6), 0 0 30px rgba(33, 212, 253, 0.5);
+            border-radius: 12px;
+            padding: 30px;
+            animation: slideIn 1s ease-in-out;
+            text-align: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            color: #42e6f5;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px #42e6f5, 0 0 15px #1ce0f4;
+        }
+
+        .form-container label {
+            display: block;
+            font-size: 1rem;
+            color: #c9d1d9;
+            text-align: left;
+            margin-bottom: 5px;
+            margin-left: 10%;
+            width: 80%;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background: #161b22;
+            color: #e6edf3;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 10px #000000;
+        }
+
+        .form-container input[type="text"]:focus,
+        .form-container input[type="password"]:focus {
+            border-color: #42e6f5;
+            background: #1f2a37;
+            box-shadow: 0 0 15px #42e6f5, 0 0 25px #1ce0f4;
+        }
+
+        .form-container .form-button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #6f86d6, #48c6ef);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(72, 198, 239, 0.6);
+        }
+
+        .form-container .form-button:hover {
+            background: linear-gradient(135deg, #48c6ef, #6f86d6);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(72, 198, 239, 0.8), 0 0 30px rgba(111, 134, 214, 0.7);
+        }
+
+        .error-message {
+            color: #ff5e5e;
+            font-weight: bold;
+            margin-top: 10px;
+            text-shadow: 0 0 8px rgba(255, 94, 94, 0.8);
+        }
+
+        .form-container input[type="submit"] {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px #42e6f5;
+            }
+            50% {
+                box-shadow: 0 0 30px #1ce0f4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div>
+                    <input type="submit" value="Sign Up" class="form-button">
+                </div>
+                <div class="error-message" id="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                document.getElementById('error-message').textContent = 'Passwords do not match';
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                if (response.ok) {
+                    window.location.href = 'index.html';
+                } else {
+                    const data = await response.json();
+                    document.getElementById('error-message').textContent = data.message;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('error-message').textContent = 'An error occurred during signup';
+            }
+        });
+    </script>
+</body>
+</html>

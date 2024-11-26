@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            background-image: linear-gradient(135deg, #121212 0%, #1f1f1f 100%);
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column; /* To allow the content to flow below the fixed navbar */
+        }
+
+        /* Contact Form Container */
+        .contact-container {
+            background: #1f1f1f;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 650px;
+            animation: fadeIn 1s ease-in-out;
+            background-image: linear-gradient(135deg, #1f1f1f, #333333);
+            margin-top: 80px; /* Space for the fixed navbar */
+        }
+
+        /* Heading Styling */
+        h1 {
+            text-align: center;
+            color: #FF4081; /* Vibrant pink */
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background-color: #333;
+            color: #ddd;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #FF4081;
+            box-shadow: 0 0 8px rgba(255, 64, 129, 0.6);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #FF4081;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+        }
+
+        .btn-submit:hover {
+            background-color: #e4005c;
+            transform: translateY(-2px);
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #f44336;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Animation for Form */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 30px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="track.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="uses.html">Uses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="usage-history.html">Usage History</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contact Form Section -->
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for form validation and submission handling
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Clear any previous error message
+            document.getElementById('error-message').textContent = '';
+
+            // Get the form field values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Basic Validation
+            if (!name || !email || !message) {
+                document.getElementById('error-message').textContent = 'Please fill out all fields.';
+                return;
+            }
+
+            // Success: Form is ready to be submitted
+            // In real applications, form submission can be handled via AJAX or server-side code
+            alert('Message sent successfully!');
+            
+            // Optionally, reset the form
+            document.getElementById('contact-form').reset();
+        });
+    </script>
+</body>
+</html>

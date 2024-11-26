@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Timeline</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        /* Global CSS Variables for easier theme management */
+        :root {
+            --primary-color: #ff4b2b;
+            --secondary-color: #6a11cb;
+            --accent-color: #2575fc;
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --line-color: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            --milestone-hover-color: #ff416c;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            padding-top: 60px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        /* Timeline line setup */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 20px 0;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--line-color);
+            z-index: -1;
+            animation: moveLine 5s infinite ease-in-out;
+        }
+
+        /* Milestone styling */
+        .milestone {
+            text-align: center;
+            position: relative;
+            width: 140px;
+            animation: fadeIn 1.5s ease-in-out;
+            cursor: pointer;
+        }
+
+        .milestone span {
+            display: block;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        /* Hover effect for milestones */
+        .milestone:hover span {
+            color: var(--milestone-hover-color);
+        }
+
+        .milestone .description {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Fade-in effect for milestones */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animate the connecting line */
+        @keyframes moveLine {
+            0% {
+                transform: scaleX(0.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scaleX(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            .timeline {
+                flex-direction: column;
+                padding-left: 30px;
+            }
+
+            .milestone {
+                margin-bottom: 40px;
+                width: 100%;
+            }
+
+            .milestone:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="track.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="uses.html">Uses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="usage-history.html">Usage History</a></li>
+        </ul>
+    </nav>
+
+
+    <h1>Project Timeline</h1>
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="milestone">
+                <span>September 2023</span>
+                <span class="description">Ordering Hardware and Sensors</span>
+            </div>
+            <div class="milestone">
+                <span>October 2023</span>
+                <span class="description">Assembly Phase</span>
+            </div>
+            <div class="milestone">
+                <span>November 2023</span>
+                <span class="description">Obstacle Detection Development</span>
+            </div>
+            <div class="milestone">
+                <span>December 2023</span>
+                <span class="description">Project Showcase</span>
+            </div>
+            <div class="milestone">
+                <span>September 2024</span>
+                <span class="description">Gathering Information for Web App</span>
+            </div>
+            <div class="milestone">
+                <span>October 2024</span>
+                <span class="description">Making Frontend</span>
+            </div>
+            <div class="milestone">
+                <span>November 2024</span>
+                <span class="description">Database and Its Testing</span>
+            </div>
+            <div class="milestone">
+                <span>November 2024</span>
+                <span class="description">Final Testing</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

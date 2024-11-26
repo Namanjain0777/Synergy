@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Project</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #121212;
+            background-image: linear-gradient(135deg, #121212 0%, #1f1f1f 100%);
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Container and Wrapper */
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .container {
+            background-color: #1f1f1f;
+            padding: 30px 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            background-image: linear-gradient(135deg, #1f1f1f, #333333);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Header Styling */
+        h2 {
+            text-align: center;
+            color: #FF4081; /* Vibrant pink */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+            animation: slideUp 0.7s ease-in-out;
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #ddd;
+            text-align: justify;
+            animation: fadeInText 1s ease-in-out;
+        }
+
+        /* Animation for Container */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation for Heading */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation for Paragraph Text */
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="track.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="uses.html">Uses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="usage-history.html">Usage History</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="content">
+                <h2>About Project</h2>
+                <p>This project involves the development of a gesture-controlled car equipped with obstacle detection capabilities. The primary goal is to create an intuitive and interactive vehicle that can be operated using simple hand gestures, eliminating the need for traditional remote controls.</p>
+                <p>By leveraging sensors and machine learning algorithms, the car can recognize specific gestures, allowing users to navigate it with ease. Incorporating obstacle detection enhances the vehicle's safety and functionality. The system uses ultrasonic sensors to detect obstacles in its path, enabling it to avoid collisions automatically.</p>
+                <p>This feature makes the car suitable for various environments, from indoor spaces to outdoor settings. The project serves multiple purposes: it provides a hands-on learning experience in robotics and programming, offers assistive technology solutions for individuals with mobility challenges, and demonstrates innovative uses of gesture recognition in everyday applications.</p>
+                <p>Overall, this gesture-controlled car exemplifies the intersection of technology and user-friendly design, making it a valuable addition to the field of robotics.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
